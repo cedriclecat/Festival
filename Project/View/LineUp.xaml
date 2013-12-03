@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
@@ -11,9 +12,19 @@
         <TextBlock x:Name="LblGenres" HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" Text="Genres." VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBands" HorizontalAlignment="Left" Margin="153,34,0,0" TextWrapping="Wrap" Text="Bands." VerticalAlignment="Top"/>
         <TextBlock x:Name="LblStages" HorizontalAlignment="Left" Margin="293,34,0,0" TextWrapping="Wrap" Text="Stages." VerticalAlignment="Top"/>
-        <ComboBox x:Name="CmbGenres" HorizontalAlignment="Left" Margin="13,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding LineUps}" DisplayMemberPath="BandName"/>
-        <ComboBox x:Name="CmbBands" HorizontalAlignment="Left" Margin="153,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding LineUps}" DisplayMemberPath="BandName"/>
-        <ComboBox x:Name="CmbStages" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding LineUps}" DisplayMemberPath="StageName"/>
+        <ComboBox x:Name="CmbGenres" HorizontalAlignment="Left" Margin="13,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Genres}" DisplayMemberPath="Name">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Selection" >
+                    <cmd:EventToCommand Command="{Binding FilterCommand}"
+                 PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        
+        
+        
+        <ComboBox x:Name="CmbBands" HorizontalAlignment="Left" Margin="153,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Bands}" DisplayMemberPath="Name"/>
+        <ComboBox x:Name="CmbStages" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Stages}" DisplayMemberPath="Name"/>
         <ListBox HorizontalAlignment="Left" Height="420" Margin="13,90,0,0" VerticalAlignment="Top" Width="750" ItemsSource="{Binding LineUps}"/>
 
     </Grid>

@@ -18,6 +18,9 @@ namespace Project.Viewmodel
         public LineUpVM()
         {
             _lineUps = LineUp.GetLineUp();
+            _genres = LineUp.GetGenres();
+            _bands = LineUp.GetBands(_genres);
+            _stages = LineUp.GetStage();
         }
 
         private ObservableCollection<LineUp> _lineUps;
@@ -33,6 +36,57 @@ namespace Project.Viewmodel
             }
         }
 
-       
+        private Contactperson _selection;
+        public Contactperson Selection
+        {
+            get
+            {
+                return _selection;
+            }
+            set
+            {
+                _selection = value;
+                OnPropertyChanged("Selection");
+                // OnPropertyChanged("Contacts");
+
+            }
+        }
+
+        private ObservableCollection<Band> _bands;
+        public ObservableCollection<Band> Bands
+        {
+            get
+            {
+                return _bands;
+            }
+            set
+            {
+                _bands = value;
+            }
+        }
+        private ObservableCollection<Genre> _genres;
+        public ObservableCollection<Genre> Genres
+        {
+            get
+            {
+                return _genres;
+            }
+            set
+            {
+                _genres = value;
+            }
+        }
+        private ObservableCollection<Stage> _stages;
+        public ObservableCollection<Stage> Stages
+        {
+            get
+            {
+                return _stages;
+            }
+            set
+            {
+                _stages = value;
+            }
+        }
     }
 }
