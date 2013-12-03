@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Project.View.Contacts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:C="clr-namespace:Project.View.converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="530" d:DesignWidth="780">
+    <UserControl.Resources>
+        <C:AddContactConverter x:Key="MultiParamConverter"></C:AddContactConverter>
+    </UserControl.Resources>
+    <Grid Height="530" VerticalAlignment="Top">
+        <TextBlock x:Name="LblContacts" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Contacts" VerticalAlignment="Top" Height="50" Width="200"/>
+        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
+        <ListBox HorizontalAlignment="Left" Height="486" Margin="0,34,0,0" VerticalAlignment="Top" Width="550" ItemsSource="{Binding Contacts}" SelectedItem="{Binding GeselecteerdContact}"/>
+        <Button x:Name="BtnAddnew" Content="Add new" HorizontalAlignment="Right" Margin="0,331,10,0" VerticalAlignment="Top" Width="190" Height="50" Command="{Binding AddCommand}" >    
+              <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                    <Binding Path="Text" ElementName="TxtName"/>
+                    <Binding Path="Text" ElementName="TxtCompany"/>
+                    <Binding Path="Text" ElementName="TxtCity"/>
+                    <Binding Path="Text" ElementName="TxtEmail"/>
+                    <Binding Path="Text" ElementName="TxtPhone"/>
+                    <Binding Path="Text" ElementName="TxtCellphone"/>
+                    <Binding Path="Text" ElementName="TxtContactTypeName"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="right" Margin="0,386,10,0" VerticalAlignment="Top" Width="190" Height="50"/>
+        <Button x:Name="BtnChange" Content="Change" HorizontalAlignment="Right" Margin="0,441,10,0" VerticalAlignment="Top" Width="190" Height="50"
+                Command="{Binding SaveCommand}"/>
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="right" Height="24" TextWrapping="Wrap" Text="Zoeken;" VerticalAlignment="Bottom" Width="150" Margin="0,0,50,10"/>
+        <Button x:Name="Btnsearch" Content="O" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Width="30" IsCancel="True" Height="24"/>
+        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="22" Margin="580,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" 
+                 Text="{Binding GeselecteerdContact.Name,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox x:Name="TxtCompany" HorizontalAlignment="Left" Height="22" Margin="580,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.Company,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="TxtCity" HorizontalAlignment="Left" Height="22" Margin="580,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.City,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="22" Margin="580,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.Email,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="TxtPhone" HorizontalAlignment="Left" Height="22" Margin="580,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.Phone,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="TxtCellphone" HorizontalAlignment="Left" Height="22" Margin="580,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.Cellphone,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="TxtContactTypeName" HorizontalAlignment="Left" Height="22" Margin="580,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"
+                  Text="{Binding GeselecteerdContact.JobRole.Name,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock x:Name="LblContactTypeName_" HorizontalAlignment="Left" Margin="580,288,0,0" TextWrapping="Wrap" Text="Persontype naam" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblCellphone" HorizontalAlignment="Left" Margin="580,245,0,0" TextWrapping="Wrap" Text="Cellphone:" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblPhone" HorizontalAlignment="Left" Margin="580,202,0,0" TextWrapping="Wrap" Text="Phone:" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblEmail" HorizontalAlignment="Left" Margin="580,159,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblCity" HorizontalAlignment="Left" Margin="580,116,0,0" TextWrapping="Wrap" Text="City:" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblCompany" HorizontalAlignment="Left" Margin="580,73,0,0" TextWrapping="Wrap" Text="Company:" VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="LblName" HorizontalAlignment="Left" Margin="580,30,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Width="190"/>
+    </Grid>
+</UserControl>

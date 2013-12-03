@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Project.View.Tickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <TextBlock x:Name="LblTickets" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Tickets" VerticalAlignment="Top" Height="50" Width="200"/>
+        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="296,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
+        <ListBox HorizontalAlignment="Left" Height="450" Margin="0,70,0,0" VerticalAlignment="Top" Width="469" ItemsSource="{Binding Tickets}" SelectedItem="{Binding GeselecteerdTicket}" />
+        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="489,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                  Text="{Binding GeselecteerdTicket.Ticketholder}"/>
+        <TextBox x:Name="TxtFirstname" HorizontalAlignment="Left" Height="23" Margin="638,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"
+                 Text="{Binding GeselecteerdTicket.TicketHolderEmail}"/>
+        <TextBox x:Name="TxtAmount" HorizontalAlignment="Left" Height="23" Margin="489,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                    Text="{Binding GeselecteerdTicket.Amount}"/>
+        <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Left" Margin="489,232,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Left" Margin="638,232,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="489,283,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="LblTicketsLeft" HorizontalAlignment="Left" Margin="492,417,0,0" TextWrapping="Wrap" Text="Tickets Left:" VerticalAlignment="Top" Width="202"/>
+        <TextBlock x:Name="LblOrderedTickets" HorizontalAlignment="Left" Margin="492,454,0,0" TextWrapping="Wrap" Text="Orderd Tickets:" VerticalAlignment="Top" Width="202"/>
+        <TextBlock x:Name="LblSearch" HorizontalAlignment="Left" Margin="489,479,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="489,500,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="221"/>
+        <Button x:Name="BtnSearch" Content="Search" HorizontalAlignment="Left" Margin="715,500,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBlock x:Name="LblName" HorizontalAlignment="Left" Margin="489,71,0,0" TextWrapping="Wrap" Text="Name." VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="LblEmail" HorizontalAlignment="Left" Margin="638,71,0,0" TextWrapping="Wrap" Text="Email." VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="LblAmount" HorizontalAlignment="Left" Margin="489,120,0,0" TextWrapping="Wrap" Text="TicketAmount." VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="ChbDay1" Content="Day1" HorizontalAlignment="Left" Margin="492,382,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ChbDay2" Content="Day2" HorizontalAlignment="Left" Margin="597,382,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ChbDay3" Content="Day3" HorizontalAlignment="Left" Margin="711,382,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblCombination" HorizontalAlignment="Left" Margin="489,344,0,0" TextWrapping="Wrap" Text="Select festival days" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtTicketType" HorizontalAlignment="Left" Height="23" Margin="489,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                 Text="{Binding GeselecteerdTicket.TicketType.Name}"/>
+        <TextBlock x:Name="LblTicketType" HorizontalAlignment="Left" Margin="489,169,0,0" TextWrapping="Wrap" Text="TicketType." VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TxtTicketPrice" HorizontalAlignment="Left" Height="23" Margin="638,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
+                  Text="{Binding GeselecteerdTicket.TicketType.Price}"/>
+        <TextBlock x:Name="LblTicketPrice" HorizontalAlignment="Left" Margin="638,169,0,0" TextWrapping="Wrap" Text="TicketPrice." VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Project.View.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <TextBlock x:Name="LblSettings" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="50" Width="200"/>
+        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="296,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
+        <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,80,0,0" TextWrapping="Wrap" Text="Date in DD.MM.JJJJ" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblTime1" HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Time in HH.MM.SS" VerticalAlignment="Top"/>
+        <Button x:Name="BtnSave" Content="Save Settigns" HorizontalAlignment="center" Height="23" Margin="592,0,0,446" VerticalAlignment="Bottom" Width="200"/>
+        <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
+        <TextBox x:Name="TxtTime" HorizontalAlignment="Left" Height="23" Margin="10,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
+        <Button x:Name="BtnStageSettings" Content="Go to stage settings" HorizontalAlignment="center" Height="23" Margin="592,0,0,382" VerticalAlignment="Bottom" Width="200"/>
+
+    </Grid>
+</UserControl>
