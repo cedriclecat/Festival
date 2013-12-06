@@ -146,35 +146,7 @@ namespace Project.Model
                 lijst.Add(tempticket);
             }
             return lijst;
-            //XmlDocument doc = new XmlDocument();
-            ////doc.Load("C:/Users/Lecat/Dropbox/nmct personal/prgramming/Project/Project/bin/Debug/Tickets.xml");
-            //doc.Load("Tickets.xml");
-            //XmlNodeList lokalelijst = doc.GetElementsByTagName("tickets");
-            //for (int i = 1; i < lokalelijst.Count; ++i)
-            //{
-            //    Ticket ticket = new Ticket();
-            //    ticket.ID = lokalelijst[i].Attributes["id"].InnerText;
-            //    ticket.Ticketholder = lokalelijst[i].Attributes["ticketholder"].InnerText;
-            //    ticket.TicketHolderEmail = lokalelijst[i].Attributes["ticketholderemail"].InnerText;
-            //    int temp;
-            //    Int32.TryParse(lokalelijst[i].Attributes["amount"].InnerText,out temp);
-            //    ticket.Amount = temp;
-
-            //    string tempid = lokalelijst[i].Attributes["typeid"].InnerText;
-            //    string tempname = lokalelijst[i].Attributes["typename"].InnerText;
-            //    string typeprice = lokalelijst[i].Attributes["typeprice"].InnerText;
-            //    double tempdoubleprice;
-            //    double.TryParse(typeprice, out tempdoubleprice);
-            //    TicketType temptype = new TicketType(tempid, tempname, tempdoubleprice);
-            //    ticket.TicketType = temptype;
-            //   // string tempid = lokalelijst[i].Attributes["typeid"].InnerText;
-            //   // string tempname = lokalelijst[i].Attributes["typename"].InnerText;
-            //    //ContactpersonType temp = new ContactpersonType(tempid, tempname);
-            //    //contact.JobRole = temp;
-            //    //adding the contactpersontype
-            //    lijst.Add(ticket);
-            //}
-            //return lijst;
+          
         }
 
         public override string ToString()
@@ -198,6 +170,15 @@ namespace Project.Model
                
             }
             return lijst;
+        }
+
+        public static void SaveTicket(Ticket geselecteerd)
+        {
+
+        }
+        public static void AddTicket(Ticket newticket)
+        {
+
         }
     }
 }

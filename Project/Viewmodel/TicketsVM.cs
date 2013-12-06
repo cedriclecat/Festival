@@ -1,4 +1,5 @@
-﻿using Project.Model;
+﻿using GalaSoft.MvvmLight.Command;
+using Project.Model;
 using Project.View;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Project.Viewmodel
 {
@@ -20,6 +22,9 @@ namespace Project.Viewmodel
         {
             //data ophalen
             _tickets = Ticket.GetTicketPersons();
+            _ticketTypes = Ticket.GetTicketType();
+            CreateAddCommand();
+            CreateSaveCommand();
         }
 
         private ObservableCollection<Ticket> _tickets;
@@ -49,6 +54,74 @@ namespace Project.Viewmodel
                 OnPropertyChanged("GeselecteerdTicket");
                
             }
+        }
+
+        private ObservableCollection<TicketType> _ticketTypes;
+        public ObservableCollection<TicketType> TicketTypes
+        {
+            get
+            {
+                return _ticketTypes;
+            }
+            set
+            {
+                _ticketTypes = value;
+                OnPropertyChanged("TicketTypes");
+            }
+        }
+        public ICommand SaveCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteSaveCommand()
+        {
+
+            if (GeselecteerdTicket != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void CreateSaveCommand()
+        {
+            SaveCommand = new RelayCommand(ExecuteSaveCommand, CanExecuteSaveCommand);
+        }
+
+        public void ExecuteSaveCommand()
+        {
+            //hier komt de method
+            Ticket.SaveTicket(GeselecteerdTicket);
+        }
+
+        public ICommand AddCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteAddCommand(object[] param)
+        {
+            return true;
+        }
+        private void CreateAddCommand()
+        {
+            AddCommand = new RelayCommand<object[]>(ExecuteAddCommand, CanExecuteAddCommand);
+            //object[] ipv object omdat het multibinding is
+        }
+
+        public void ExecuteAddCommand(object[] param)
+        {
+            //hier komt de method
+            //nog aan te passen
+
+            Ticket temp = new Ticket();
+
+            Ticket.AddTicket(temp);
+            Tickets = Ticket.GetTicketPersons();          
+            
         }
     }
 }

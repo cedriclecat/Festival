@@ -209,7 +209,7 @@ namespace Project.Model
         }
         public override string ToString()
         {
-            return this.Date + "\t" + this.From + "\t" + this.Until + "\t" + this.Stage.Name + "\t" + this.Band.Name;
+            return this.Date + "\t" + this.From + "\t" + this.Until + "\t" + this.Stage.Name + "\t" + this.Band.Name + "\t"+this.Band.Genre.Name;
                 
         }
     }

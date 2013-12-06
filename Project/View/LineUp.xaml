@@ -24,8 +24,22 @@
         
         
         
-        <ComboBox x:Name="CmbBands" HorizontalAlignment="Left" Margin="153,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Bands}" DisplayMemberPath="Name"/>
-        <ComboBox x:Name="CmbStages" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Stages}" DisplayMemberPath="Name"/>
+        <ComboBox x:Name="CmbBands" HorizontalAlignment="Left" Margin="153,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Bands}" DisplayMemberPath="Name">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged" >
+                    <cmd:EventToCommand Command="{Binding BandsFilterCommand}"
+                 PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        <ComboBox x:Name="CmbStages" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Stages}" DisplayMemberPath="Name">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged" >
+                    <cmd:EventToCommand Command="{Binding StageFilterCommand}"
+                 PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
         <ListBox HorizontalAlignment="Left" Height="420" Margin="13,90,0,0" VerticalAlignment="Top" Width="750" ItemsSource="{Binding LineUps}"/>
 
     </Grid>

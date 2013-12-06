@@ -25,6 +25,8 @@ namespace Project.Viewmodel
             _bands = LineUp.GetBands(_genres);
             _stages = LineUp.GetStage();
             CreateFilterCommand();
+            CreateBandsFilterCommand();
+            CreateStageFilterCommand();
         }
 
         private ObservableCollection<LineUp> _lineUps;
@@ -115,6 +117,7 @@ namespace Project.Viewmodel
         }
         public void ExcecuteFilterCommand(SelectionChangedEventArgs par)
         {
+            _lineUps = LineUp.GetLineUp();
             Genre selectedGenre = (Genre)par.AddedItems[0];
             ObservableCollection<LineUp> temp = new ObservableCollection<LineUp>();
             foreach (LineUp line in _lineUps)
@@ -131,6 +134,82 @@ namespace Project.Viewmodel
         public void CreateFilterCommand()
         {
             FilterCommand = new RelayCommand<SelectionChangedEventArgs>(ExcecuteFilterCommand, CanxecuteFilterCommand);
+        }
+
+
+
+        public ICommand BandsFilterCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanxecuteBandsFilterCommand(SelectionChangedEventArgs par)
+        {
+            if (par != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void ExcecuteBandsFilterCommand(SelectionChangedEventArgs par)
+        {
+            _lineUps = LineUp.GetLineUp();
+            Band selectBand = (Band)par.AddedItems[0];
+            ObservableCollection<LineUp> temp = new ObservableCollection<LineUp>();
+            foreach (LineUp line in _lineUps)
+            {
+                if (selectBand.Name == line.Band.Name)
+                {
+                    temp.Add(line);
+                }
+            }
+
+            _lineUps.Clear();
+            LineUps = temp;
+        }
+        public void CreateBandsFilterCommand()
+        {
+            BandsFilterCommand = new RelayCommand<SelectionChangedEventArgs>(ExcecuteBandsFilterCommand, CanxecuteBandsFilterCommand);
+        }
+
+        public ICommand StageFilterCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanxecuteStageFilterCommand(SelectionChangedEventArgs par)
+        {
+            if (par != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void ExcecuteStageFilterCommand(SelectionChangedEventArgs par)
+        {
+            _lineUps = LineUp.GetLineUp();
+            Stage selectStage = (Stage)par.AddedItems[0];
+            ObservableCollection<LineUp> temp = new ObservableCollection<LineUp>();
+            foreach (LineUp line in _lineUps)
+            {
+                if (selectStage.Name == line.Stage.Name)
+                {
+                    temp.Add(line);
+                }
+            }
+
+            _lineUps.Clear();
+            LineUps = temp;
+        }
+        public void CreateStageFilterCommand()
+        {
+            StageFilterCommand = new RelayCommand<SelectionChangedEventArgs>(ExcecuteStageFilterCommand, CanxecuteStageFilterCommand);
         }
     }
 }
