@@ -6,8 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <TextBlock x:Name="LblSettings" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="50" Width="200"/>
-        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="296,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
         <ComboBox x:Name="LblStage" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="200"/>
         <TextBlock x:Name="LblStageselect" HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="Select stage" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblnewStagename" HorizontalAlignment="Left" Margin="241,23,0,0" TextWrapping="Wrap" Text="Change stage name:" VerticalAlignment="Top"/>
@@ -29,8 +27,6 @@
         <Button x:Name="BtnNewband" Content="Add new band" HorizontalAlignment="Left" Margin="564,329,0,0" VerticalAlignment="Top" Width="200"/>
         <CheckBox x:Name="CcbInsert" Content="Insert at given time" HorizontalAlignment="Left" Margin="564,403,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <CheckBox x:Name="CcbOverwrite" Content="Overwrite at given time" HorizontalAlignment="Left" Margin="564,435,0,0" VerticalAlignment="Top" IsChecked="True"/>
-        <TextBlock x:Name="LblNewStage" HorizontalAlignment="Left" Margin="564,471,0,0" TextWrapping="Wrap" Text="Add new stage" VerticalAlignment="Top"/>
-        <Button x:Name="BtnNewstage" Content="Add new stage" HorizontalAlignment="Left" Margin="564,500,0,0" VerticalAlignment="Top" Width="200" IsCancel="True"/>
 
     </Grid>
 </UserControl>

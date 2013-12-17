@@ -6,14 +6,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <TextBlock x:Name="LblSettings" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="50" Width="200"/>
-        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="296,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
-        <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,80,0,0" TextWrapping="Wrap" Text="Date in DD.MM.JJJJ" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LblTime1" HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Time in HH.MM.SS" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSave" Content="Save Settigns" HorizontalAlignment="center" Height="23" Margin="592,0,0,446" VerticalAlignment="Bottom" Width="200"/>
-        <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
-        <TextBox x:Name="TxtTime" HorizontalAlignment="Left" Height="23" Margin="10,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
-        <Button x:Name="BtnStageSettings" Content="Go to stage settings" HorizontalAlignment="center" Height="23" Margin="592,0,0,382" VerticalAlignment="Bottom" Width="200"/>
+        <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top"/>      
+        <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblTickets" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" Text="Total Tickets" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtTickets" HorizontalAlignment="Left" Height="23" Margin="10,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblStages" HorizontalAlignment="Left" Margin="10,124,0,0" TextWrapping="Wrap" Text="Stages" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblBands" HorizontalAlignment="Left" Margin="381,124,0,0" TextWrapping="Wrap" Text="Band" VerticalAlignment="Top" RenderTransformOrigin="2.852,-0.75"/>
+        <TextBlock x:Name="LblGenres" HorizontalAlignment="Left" Margin="197,124,0,0" TextWrapping="Wrap" Text="Genres" VerticalAlignment="Top"/>
+        <ListBox x:Name="LsbStages"  HorizontalAlignment="Left" Height="267" Margin="10,145,0,0" VerticalAlignment="Top" Width="166"/>
+        <TextBox x:Name="TxtStageName" HorizontalAlignment="Left" Height="23" Margin="10,437,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblStageName" HorizontalAlignment="Left" Margin="10,416,0,0" TextWrapping="Wrap" Text="Stage Name:" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNewStage" HorizontalAlignment="Left" Content="Add New Stage" Margin="10,465,0,0" VerticalAlignment="Top" Width="166"/>
+        <ListBox x:Name="LsbGenres"  HorizontalAlignment="Left" Height="267" Margin="197,145,0,0" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblGenreName" HorizontalAlignment="Left" Margin="197,417,0,0" TextWrapping="Wrap" Text="Genre Name:" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtGenreName" HorizontalAlignment="Left" Height="23" Margin="197,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+        <Button x:Name="BtnNewGenre" HorizontalAlignment="Left" Content="Add New Genre" Margin="197,465,0,0" VerticalAlignment="Top" Width="166"/>
+        <ListBox x:Name="LsbBands"  HorizontalAlignment="Left" Height="267" Margin="381,145,0,0" VerticalAlignment="Top" Width="395"/>
+        <Button x:Name="BtnAdjustStage" HorizontalAlignment="Left" Content="Adjust Stage" Margin="10,490,0,0" VerticalAlignment="Top" Width="166"/>
+        <Button x:Name="BtnAdjustGenre" HorizontalAlignment="Left" Content="Adjust Genre" Margin="197,490,0,0" VerticalAlignment="Top" Width="166"/>
+        <TextBox x:Name="TxtGenreName_Copy" HorizontalAlignment="Left" Height="23" Margin="381,437,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
+        <TextBox x:Name="TxtGenreName_Copy2" HorizontalAlignment="Left" Height="23" Margin="381,487,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
+        <TextBox x:Name="TxtGenreName_Copy3" HorizontalAlignment="Left" Height="23" Margin="591,487,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
+        <ComboBox HorizontalAlignment="Left" Margin="591,437,0,0" VerticalAlignment="Top" Width="185"/>
+        <TextBlock x:Name="LblBandNamev" HorizontalAlignment="Left" Margin="381,421,0,0" TextWrapping="Wrap" Text="Band Name:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblBandGenre" HorizontalAlignment="Left" Margin="599,421,0,0" TextWrapping="Wrap" Text="Band Genre:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblBandTwitter" HorizontalAlignment="Left" Margin="591,469,0,0" TextWrapping="Wrap" Text="Band Twitter:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblBandFacebook" HorizontalAlignment="Left" Margin="381,471,0,0" TextWrapping="Wrap" Text="Band Facebook:" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNewBand" HorizontalAlignment="Left" Content="Add New Band" Margin="381,515,0,0" VerticalAlignment="Top" Width="185"/>
+        <Button x:Name="BtnSaveBand" HorizontalAlignment="Left" Content="Adjust Band" Margin="591,515,0,0" VerticalAlignment="Top" Width="185"/>
 
     </Grid>
 </UserControl>
