@@ -86,6 +86,7 @@ namespace Project.Viewmodel
         {
             //hier komt de method
             Contactperson.SaveContacts(GeselecteerdContact);
+            Contacts = Contactperson.GetContactPersons();
         }
 
 
@@ -123,6 +124,39 @@ namespace Project.Viewmodel
             Contactperson.AddContact(temp);
             Console.WriteLine(param.ToString());
                 Contacts = Contactperson.GetContactPersons();
+        }
+
+
+        public ICommand DeletedCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteDeleteCommand(object[] param)
+        {
+            return true;
+        }
+        private void CreateDeleteCommand()
+        {
+            AddCommand = new RelayCommand<object[]>(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+            //object[] ipv object omdat het multibinding is
+        }
+
+        public void ExecuteDeleteCommand(object[] param)
+        {
+            Contactperson temp = new Contactperson();
+            temp.Name = param[0].ToString();
+            temp.Company = param[1].ToString();
+            temp.City = param[2].ToString();
+            temp.Email = param[3].ToString();
+            temp.Phone = param[4].ToString();
+            temp.Cellphone = param[5].ToString();
+            ContactpersonType tempType = new ContactpersonType();
+            tempType.Name = param[6].ToString();
+            temp.JobRole = tempType;
+
+            Contactperson.DeleteContact(temp);
+            Contacts = Contactperson.GetContactPersons();
         }
     }
 }

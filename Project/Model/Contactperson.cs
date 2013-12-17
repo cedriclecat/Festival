@@ -174,7 +174,7 @@ namespace Project.Model
 
         public static void SaveContacts(Contactperson tempperson)
         {
-            string sql = ("UPDATE contacts SET Name=@Name,Company=@Company,City=@City,Email=@Email,Phone=@Phone,Cellphone=@Cellphone,ContactTypeID=@ContactTypeID,ContactTypeName=@ContactTypeName where ID=@ID");
+            string sql = ("UPDATE contacts SET Name=@Name,Company=@Company,City=@City,Email=@Email,Phone=@Phone,Cellphone=@Cellphone,Type=@Type where ID=@ID");
             ModifyDatabase(sql, tempperson);
         }
         public static void AddContact(Contactperson tempperson)
@@ -195,8 +195,14 @@ namespace Project.Model
             ModifyDatabase(sql, tempperson);
         }
 
+        public static void DeleteContact(Contactperson temp)
+        {
+
+        }
+
         private static void ModifyDatabase(string sql,Contactperson temp)
         {
+            DbParameter id = Database.AddParameter("@ID", temp.ID);
             DbParameter name = Database.AddParameter("@Name", temp.Name);
             DbParameter company = Database.AddParameter("@Company", temp.Company);
             DbParameter city = Database.AddParameter("@City", temp.City);
@@ -205,7 +211,7 @@ namespace Project.Model
             DbParameter cellphone = Database.AddParameter("@CellPhone", temp.Cellphone);
             DbParameter type = Database.AddParameter("@Type", temp.JobRole.ID);
 
-            Database.ModifyData(sql, name, company, city, email,phone,cellphone, type);
+            Database.ModifyData(sql,id, name, company, city, email,phone,cellphone, type);
         }
 
 

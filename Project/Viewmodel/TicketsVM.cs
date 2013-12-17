@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Project.Viewmodel
@@ -37,6 +38,7 @@ namespace Project.Viewmodel
             set
             {
                 _tickets = value;
+                OnPropertyChanged("Tickets");
             }
         }
 
@@ -69,6 +71,19 @@ namespace Project.Viewmodel
                 OnPropertyChanged("TicketTypes");
             }
         }
+
+        private TicketType _geselecteerdeTicketType;
+        public TicketType GeselecteerdeTicketType
+        {
+            get
+            {
+                return _geselecteerdeTicketType;
+            }
+            set
+            {
+                _geselecteerdeTicketType = value;
+            }
+        }
         public ICommand SaveCommand
         {
             get;
@@ -94,7 +109,16 @@ namespace Project.Viewmodel
         public void ExecuteSaveCommand()
         {
             //hier komt de method
-            Ticket.SaveTicket(GeselecteerdTicket);
+            if (GeselecteerdeTicketType == null)
+            {
+                MessageBox.Show("Please select a TicketType");
+            }
+            else
+            {
+                GeselecteerdTicket.TicketType = GeselecteerdeTicketType;
+                Ticket.SaveTicket(GeselecteerdTicket);
+                Tickets = Ticket.GetTicketPersons();
+            }
         }
 
         public ICommand AddCommand
@@ -116,12 +140,24 @@ namespace Project.Viewmodel
         {
             //hier komt de method
             //nog aan te passen
+            if (GeselecteerdeTicketType == null)
+            {
+                MessageBox.Show("Please select a TicketType");
+            }
+            else
+            {
+                Ticket temp = new Ticket();
+                temp.Ticketholder = param[0].ToString();
+                temp.TicketHolderEmail = param[1].ToString();
+                temp.Amount = int.Parse(param[2].ToString());
+                temp.Day1 = Convert.ToBoolean(param[3]);
+                temp.Day2 = Convert.ToBoolean(param[4]);
+                temp.Day3 = Convert.ToBoolean(param[5]);
+                temp.TicketType = GeselecteerdeTicketType;
 
-            Ticket temp = new Ticket();
-
-            Ticket.AddTicket(temp);
-            Tickets = Ticket.GetTicketPersons();          
-            
+                Ticket.AddTicket(temp);
+                Tickets = Ticket.GetTicketPersons();
+            }
         }
     }
 }

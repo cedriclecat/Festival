@@ -174,11 +174,30 @@ namespace Project.Model
 
         public static void SaveTicket(Ticket geselecteerd)
         {
+            String sql = "UPDATE tickets SET TicketHolder=@TicketHolder,TicketHolderEmail=@TicketHolderEmail,Amount=@Amount,Day1=@Day1,Day2=@Day2,Day3=@Day3,TicketType=@TicketType where ID=@ID";
+            ModifyDatabase(sql, geselecteerd);
+
 
         }
+        
         public static void AddTicket(Ticket newticket)
         {
 
+            String sql = "INSERT INTO tickets (TicketHolder,TicketHolderEmail,Amount,Day1,Day2,Day3,TicketType) VALUES(@TicketHolder,@TicketHolderEmail,@Amount,@Day1,@Day2,@Day3,@TicketType)";
+            ModifyDatabase(sql, newticket);
+        }
+
+        private static void ModifyDatabase(string sql, Ticket temp)
+        {
+            DbParameter id = Database.AddParameter("@ID", temp.ID);
+            DbParameter ticketholder = Database.AddParameter("@TicketHolder", temp.Ticketholder);
+            DbParameter ticketholderemail = Database.AddParameter("@TicketHolderEmail", temp.TicketHolderEmail);
+            DbParameter amount = Database.AddParameter("@Amount", temp.Amount);
+            DbParameter day1 = Database.AddParameter("@Day1", temp.Day1);
+            DbParameter day2 = Database.AddParameter("@Day2", temp.Day2);
+            DbParameter day3 = Database.AddParameter("@Day3", temp.Day3);
+            DbParameter tickettype = Database.AddParameter("@TicketType", temp.TicketType.ID);
+            Database.ModifyData(sql,id, ticketholder, ticketholderemail, amount, day1, day2, day3,tickettype);
         }
     }
 }

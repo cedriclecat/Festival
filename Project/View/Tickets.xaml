@@ -24,8 +24,10 @@
                 <MultiBinding Converter="{StaticResource MultiParamConverter}">
                     <Binding Path="Text" ElementName="TxtName"/>
                     <Binding Path="Text" ElementName="TxtEmail"/>
-                    <Binding Path="Text" ElementName="TxtAmount"/>                    
-                    <Binding Path="Text" ElementName="TxtType"/>                   
+                    <Binding Path="Text" ElementName="TxtAmount"/>
+                    <Binding Path="IsChecked" ElementName="ChbDay1"/>
+                    <Binding Path="IsChecked" ElementName="ChbDay2"/>
+                    <Binding Path="IsChecked" ElementName="ChbDay3"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
@@ -46,11 +48,10 @@
         <CheckBox x:Name="ChbDay3" Content="Day3" HorizontalAlignment="Left" Margin="711,382,0,0" VerticalAlignment="Top"
                     IsChecked="{Binding GeselecteerdTicket.Day3}"/>
         <TextBlock x:Name="LblCombination" HorizontalAlignment="Left" Margin="489,344,0,0" TextWrapping="Wrap" Text="Select festival days" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="TxtType" HorizontalAlignment="Left" Height="23" Margin="489,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"
-                 Text="{Binding GeselecteerdTicket.TicketType.Name}"/>
+     
         <TextBlock x:Name="LblTicketType" HorizontalAlignment="Left" Margin="489,169,0,0" TextWrapping="Wrap" Text="TicketType." VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="TxtTicketType" HorizontalAlignment="Left" Margin="638,191,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketTypes}" DisplayMemberPath="Name"
-                 />
+        <ComboBox x:Name="TxtTicketType" HorizontalAlignment="Left" Margin="492,190,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketTypes}" DisplayMemberPath="Name"
+                SelectedItem="{Binding GeselecteerdeTicketType}" />
 
     </Grid>
 </UserControl>
