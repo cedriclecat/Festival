@@ -26,6 +26,7 @@ namespace Project.Viewmodel
             _ticketTypes = Ticket.GetTicketType();
             CreateAddCommand();
             CreateSaveCommand();
+            CreateDeleteCommand();
         }
 
         private ObservableCollection<Ticket> _tickets;
@@ -158,6 +159,35 @@ namespace Project.Viewmodel
                 Ticket.AddTicket(temp);
                 Tickets = Ticket.GetTicketPersons();
             }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteDeleteCommand()
+        {
+            if (GeselecteerdTicket != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void CreateDeleteCommand()
+        {
+            DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+            //object[] ipv object omdat het multibinding is
+        }
+
+        public void ExecuteDeleteCommand()
+        {
+
+            Ticket.DeleteTicket(GeselecteerdTicket);
+            Tickets = Ticket.GetTicketPersons();
         }
     }
 }

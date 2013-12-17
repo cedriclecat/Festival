@@ -197,7 +197,8 @@ namespace Project.Model
 
         public static void DeleteContact(Contactperson temp)
         {
-
+            String sql = "DELETE FROM contacts where ID=@ID";
+            ModifyDatabase(sql,temp);
         }
 
         private static void ModifyDatabase(string sql,Contactperson temp)

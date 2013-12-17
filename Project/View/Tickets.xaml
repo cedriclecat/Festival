@@ -32,7 +32,8 @@
             </Button.CommandParameter>
         </Button>
         <Button x:Name="BtnEdit" Content="Edit" HorizontalAlignment="Left" Margin="638,232,0,0" VerticalAlignment="Top" Width="120" Command="{Binding SaveCommand}"/>
-        <Button x:Name="BtnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="489,283,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="489,283,0,0" VerticalAlignment="Top" Width="120"
+                Command="{Binding DeleteCommand}"/>
         <TextBlock x:Name="LblTicketsLeft" HorizontalAlignment="Left" Margin="492,417,0,0" TextWrapping="Wrap" Text="Tickets Left:" VerticalAlignment="Top" Width="202"/>
         <TextBlock x:Name="LblOrderedTickets" HorizontalAlignment="Left" Margin="492,454,0,0" TextWrapping="Wrap" Text="Orderd Tickets:" VerticalAlignment="Top" Width="202"/>
         <TextBlock x:Name="LblSearch" HorizontalAlignment="Left" Margin="489,479,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top" Width="202"/>
@@ -52,6 +53,8 @@
         <TextBlock x:Name="LblTicketType" HorizontalAlignment="Left" Margin="489,169,0,0" TextWrapping="Wrap" Text="TicketType." VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="TxtTicketType" HorizontalAlignment="Left" Margin="492,190,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketTypes}" DisplayMemberPath="Name"
                 SelectedItem="{Binding GeselecteerdeTicketType}" />
+        <Button x:Name="BtnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="638,283,0,0" VerticalAlignment="Top" Width="120"
+        	Command="{Binding DeleteCommand}"/>
 
     </Grid>
 </UserControl>

@@ -26,7 +26,8 @@
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
-        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="right" Margin="0,386,10,0" VerticalAlignment="Top" Width="190" Height="50"/>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="right" Margin="0,386,10,0" VerticalAlignment="Top" Width="190" Height="50"
+                Command="{Binding DeleteCommand}"/>
         <Button x:Name="BtnChange" Content="Change" HorizontalAlignment="Right" Margin="0,441,10,0" VerticalAlignment="Top" Width="190" Height="50"
                 Command="{Binding SaveCommand}"/>
         <TextBox x:Name="TxtSearch" HorizontalAlignment="right" Height="24" TextWrapping="Wrap" Text="Zoeken;" VerticalAlignment="Bottom" Width="150" Margin="0,0,50,10"/>

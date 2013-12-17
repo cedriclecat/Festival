@@ -187,6 +187,12 @@ namespace Project.Model
             ModifyDatabase(sql, newticket);
         }
 
+        public static void DeleteTicket(Ticket temp)
+        {
+            String sql = "DELETE FROM tickets where ID=@ID";
+            ModifyDatabase(sql, temp);
+        }
+
         private static void ModifyDatabase(string sql, Ticket temp)
         {
             DbParameter id = Database.AddParameter("@ID", temp.ID);
