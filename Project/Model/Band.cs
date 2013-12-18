@@ -16,5 +16,10 @@ namespace Project.Model
         public String Twitter { get; set; }
         public String Facebook { get; set; }
         public Genre Genre { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name + "\t" + this.Facebook + "\t" + this.Twitter + "\t" + this.Description + "\t" +this.Genre.Name; 
+        }
     }
 }
