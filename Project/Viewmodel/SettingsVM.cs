@@ -159,12 +159,15 @@ namespace Project.Viewmodel
         }
         private void CreateAddStageCommand()
         {
-            SaveStageCommand = new RelayCommand<object>(ExecuteAddStageCommand, CanExecuteAddStageCommand);
+            AddStageCommand = new RelayCommand<object>(ExecuteAddStageCommand, CanExecuteAddStageCommand);
         }
 
         public void ExecuteAddStageCommand(object param)
         {
-            Stage.AddStage(GeselecteerdeStage);
+            Stage temp = new Stage();
+            temp.Name = param.ToString() ;
+
+            Stage.AddStage(temp);
             Stages = LineUp.GetStage();
         }
 
@@ -176,25 +179,21 @@ namespace Project.Viewmodel
             get;
             internal set;
         }
-        public bool CanExecuteAddGenreCommand()
+        public bool CanExecuteAddGenreCommand(object param)
         {
 
-            if (GeselecteerdeStage != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
         private void CreateAddGenreCommand()
         {
-            SaveStageCommand = new RelayCommand(ExecuteAddGenreCommand, CanExecuteAddGenreCommand);
+            AddGenreCommand = new RelayCommand<object>(ExecuteAddGenreCommand, CanExecuteAddGenreCommand);
         }
 
-        public void ExecuteAddGenreCommand()
+        public void ExecuteAddGenreCommand(object param)
         {
+            Genre temp = new Genre();
+            temp.Name = param.ToString();
+
             Genre.AddGenre(GeselecteerdGenre);
             Genres = LineUp.GetGenres();
         }
@@ -219,7 +218,7 @@ namespace Project.Viewmodel
         }
         private void CreateSaveGenreCommand()
         {
-            SaveStageCommand = new RelayCommand(ExecuteSaveGenreCommand, CanExecuteSaveGenreCommand);
+            SaveGenreCommand = new RelayCommand(ExecuteSaveGenreCommand, CanExecuteSaveGenreCommand);
         }
 
         public void ExecuteSaveGenreCommand()
@@ -249,12 +248,13 @@ namespace Project.Viewmodel
         }
         private void CreateSaveBandCommand()
         {
-            SaveStageCommand = new RelayCommand(ExecuteSaveBandCommand, CanExecuteSaveBandCommand);
+            SaveBandCommand = new RelayCommand(ExecuteSaveBandCommand, CanExecuteSaveBandCommand);
         }
 
         public void ExecuteSaveBandCommand()
         {
-
+            Band.SaveBand(GeselecteerdeBand);
+            Bands = LineUp.GetBands(Genres);
         }
 
 
@@ -266,24 +266,23 @@ namespace Project.Viewmodel
         }
         public bool CanExecuteAddBandCommand(object[] param)
         {
-
-            if (GeselecteerdeStage != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
         private void CreateAddBandCommand()
         {
-            SaveStageCommand = new RelayCommand<object[]>(ExecuteAddBandCommand, CanExecuteAddBandCommand);
+            AddBandCommand = new RelayCommand<object[]>(ExecuteAddBandCommand, CanExecuteAddBandCommand);
         }
 
         public void ExecuteAddBandCommand(object[] param)
         {
+            Band temp = new Band();
+            temp.Name = param[0].ToString();
+            temp.Facebook = param[1].ToString();
+            temp.Twitter = param[2].ToString();
 
+
+            Band.AddBand(temp);
+            Bands = LineUp.GetBands(Genres);
         }
     }
 }

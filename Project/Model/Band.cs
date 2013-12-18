@@ -21,5 +21,15 @@ namespace Project.Model
         {
             return this.Name + "\t" + this.Facebook + "\t" + this.Twitter + "\t" + this.Description + "\t" +this.Genre.Name; 
         }
+
+        public static void AddBand(Band temp)
+        {
+
+        }
+
+        public static void SaveBand(Band temp)
+        {
+
+        }
     }
 }
