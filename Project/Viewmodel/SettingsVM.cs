@@ -20,13 +20,18 @@ namespace Project.Viewmodel
 
         public SettingsVM()
         {
-            _stages = LineUp.GetStage();
-            _genres = LineUp.GetGenres();
-            _bands = LineUp.GetBands(_genres);
+
             CreateSaveStageCommand();
             CreateAddStageCommand();
             CreateAddGenreCommand();
             CreateSaveGenreCommand();
+            CreateAddBandCommand();
+            CreateSaveBandCommand();
+
+            _stages = LineUp.GetStage();
+            _genres = LineUp.GetGenres();
+            _bands = LineUp.GetBands(_genres);
+           
         }
 
         private ObservableCollection<Stage> _stages;
@@ -148,28 +153,22 @@ namespace Project.Viewmodel
             get;
             internal set;
         }
-        public bool CanExecuteAddStageCommand()
+        public bool CanExecuteAddStageCommand(object param)
         {
-
-            if (GeselecteerdeStage != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
         private void CreateAddStageCommand()
         {
-            SaveStageCommand = new RelayCommand(ExecuteAddStageCommand, CanExecuteAddStageCommand);
+            SaveStageCommand = new RelayCommand<object>(ExecuteAddStageCommand, CanExecuteAddStageCommand);
         }
 
-        public void ExecuteAddStageCommand()
+        public void ExecuteAddStageCommand(object param)
         {
             Stage.AddStage(GeselecteerdeStage);
             Stages = LineUp.GetStage();
         }
+
+
 
 
         public ICommand AddGenreCommand

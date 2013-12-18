@@ -22,7 +22,7 @@
         <TextBox x:Name="TxtStageName" HorizontalAlignment="Left" Height="23" Margin="10,437,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerdeStage.Name}" VerticalAlignment="Top" Width="166"/>
         <TextBlock x:Name="LblStageName" HorizontalAlignment="Left" Margin="10,416,0,0" TextWrapping="Wrap" Text="Stage Name:" VerticalAlignment="Top"/>
         <Button x:Name="BtnNewStage" HorizontalAlignment="Left" Content="Add New Stage" Margin="10,465,0,0" VerticalAlignment="Top" Width="166"
-                Command="{Binding AddStageCommand}" CommandParameter="{Binding Path="Text", ElementName="TxtBandName}"/>
+                Command="{Binding AddStageCommand}" CommandParameter="{Binding ElementName=TxtStageName,Path=Text}"/>
             
        
         <ListBox x:Name="LsbGenres"  HorizontalAlignment="Left" Height="267" Margin="197,145,0,0" VerticalAlignment="Top" Width="166"
