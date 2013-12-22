@@ -54,8 +54,7 @@ namespace Project.Model
                 OnPropertyChanged("Until");
             }
         }
-        //public Stage Stage { get; set; }
-        //public Band Band { get; set; }
+    
         private Band _band;
         public Band Band 
         {

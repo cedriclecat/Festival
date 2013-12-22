@@ -27,12 +27,32 @@ namespace Project.Viewmodel
             CreateSaveGenreCommand();
             CreateAddBandCommand();
             CreateSaveBandCommand();
+            CreateSaveSettingsCommand();
 
             _stages = LineUp.GetStage();
             _genres = LineUp.GetGenres();
             _bands = LineUp.GetBands(_genres);
+
+            _settings = Settings.GetSettings();
            
         }
+
+
+        private Settings _settings;
+        public Settings Settings
+        {
+            get
+            {
+                return _settings;
+            }
+            set
+            {
+                _settings = value;
+                OnPropertyChanged("Settings");
+            }
+        }
+
+        
 
         private ObservableCollection<Stage> _stages;
         public ObservableCollection<Stage> Stages
@@ -298,6 +318,31 @@ namespace Project.Viewmodel
             temp.Genre = GeselecteerdGenreCmb;
             Band.AddBand(temp);
             Bands = LineUp.GetBands(Genres);
+        }
+
+
+        public ICommand SaveSettingsCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteSaveSettingsCommand(object[] param)
+        {           
+                return true;           
+        }
+        private void CreateSaveSettingsCommand()
+        {
+            SaveSettingsCommand = new RelayCommand<object[]>(ExecuteSaveSettingsCommand, CanExecuteSaveSettingsCommand);
+        }
+
+        public void ExecuteSaveSettingsCommand(object[] param)
+        {
+            Settings temp = new Settings();
+
+            temp.Startdate = DateTime.Parse(param[0].ToString());
+            temp.AvailableTickets = int.Parse(param[1].ToString());
+            
+            Settings.SaveSettings(temp);
         }
     }
 }

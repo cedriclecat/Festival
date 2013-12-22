@@ -10,10 +10,10 @@
         <C:AddContactConverter x:Key="MultiParamConverter"></C:AddContactConverter>
     </UserControl.Resources>
     <Grid>
-        <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top"/>      
-        <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" Text="{Binding Settings.Startdate}" VerticalAlignment="Top" Width="166"/>
         <TextBlock x:Name="LblTickets" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" Text="Total Tickets" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTickets" HorizontalAlignment="Left" Height="23" Margin="10,84,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBox x:Name="TxtTickets" HorizontalAlignment="Left" Height="23" Margin="10,84,0,0" TextWrapping="Wrap" Text="{Binding Settings.AvailableTickets}" VerticalAlignment="Top" Width="166"/>
         <TextBlock x:Name="LblStages" HorizontalAlignment="Left" Margin="10,124,0,0" TextWrapping="Wrap" Text="Stages" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBands" HorizontalAlignment="Left" Margin="381,124,0,0" TextWrapping="Wrap" Text="Band" VerticalAlignment="Top" RenderTransformOrigin="2.852,-0.75"/>
         <TextBlock x:Name="LblGenres" HorizontalAlignment="Left" Margin="197,124,0,0" TextWrapping="Wrap" Text="Genres" VerticalAlignment="Top"/>
@@ -56,5 +56,14 @@
             </Button.CommandParameter>
         </Button>
         <Button x:Name="BtnSaveBand" HorizontalAlignment="Left" Content="Adjust Band" Margin="591,515,0,0" VerticalAlignment="Top" Width="185" Command="{Binding SaveBandCommand}"/>
-     </Grid>
+        <Button x:Name="BtnSave"  Content="Save general content" HorizontalAlignment="Left" Margin="197,31,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.467,0.6"
+                Command="{Binding SaveSettingsCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                    <Binding Path="Text" ElementName="TxtDate"/>
+                    <Binding Path="Text" ElementName="LblTickets"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+    </Grid>
 </UserControl>
