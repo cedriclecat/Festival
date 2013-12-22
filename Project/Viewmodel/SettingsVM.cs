@@ -118,6 +118,21 @@ namespace Project.Viewmodel
             }
         }
 
+        private Genre _geselecteerdGenreCmb;
+        public Genre GeselecteerdGenreCmb
+        {
+            get
+            {
+                return _geselecteerdGenreCmb;
+            }
+            set
+            {
+                _geselecteerdGenreCmb = value;
+                OnPropertyChanged("GeselecteerdGenreCmb");
+
+            }
+        }
+
         //button commands
         public ICommand SaveStageCommand
         {
@@ -194,7 +209,7 @@ namespace Project.Viewmodel
             Genre temp = new Genre();
             temp.Name = param.ToString();
 
-            Genre.AddGenre(GeselecteerdGenre);
+            Genre.AddGenre(temp);
             Genres = LineUp.GetGenres();
         }
 
@@ -207,7 +222,7 @@ namespace Project.Viewmodel
         public bool CanExecuteSaveGenreCommand()
         {
 
-            if (GeselecteerdeStage != null)
+            if (GeselecteerdGenre != null)
             {
                 return true;
             }
@@ -237,7 +252,7 @@ namespace Project.Viewmodel
         public bool CanExecuteSaveBandCommand()
         {
 
-            if (GeselecteerdeStage != null)
+            if (GeselecteerdeBand != null)
             {
                 return true;
             }
@@ -279,8 +294,8 @@ namespace Project.Viewmodel
             temp.Name = param[0].ToString();
             temp.Facebook = param[1].ToString();
             temp.Twitter = param[2].ToString();
-
-
+            temp.Description = " ";
+            temp.Genre = GeselecteerdGenreCmb;
             Band.AddBand(temp);
             Bands = LineUp.GetBands(Genres);
         }

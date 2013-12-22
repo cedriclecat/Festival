@@ -12,8 +12,8 @@
     <Grid>
         <TextBlock x:Name="LblDate" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Start Date" VerticalAlignment="Top"/>      
         <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
-        <TextBlock x:Name="LblTickets" HorizontalAlignment="Left" Margin="10,75,0,0" TextWrapping="Wrap" Text="Total Tickets" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTickets" HorizontalAlignment="Left" Height="23" Margin="10,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <TextBlock x:Name="LblTickets" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" Text="Total Tickets" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtTickets" HorizontalAlignment="Left" Height="23" Margin="10,84,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
         <TextBlock x:Name="LblStages" HorizontalAlignment="Left" Margin="10,124,0,0" TextWrapping="Wrap" Text="Stages" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBands" HorizontalAlignment="Left" Margin="381,124,0,0" TextWrapping="Wrap" Text="Band" VerticalAlignment="Top" RenderTransformOrigin="2.852,-0.75"/>
         <TextBlock x:Name="LblGenres" HorizontalAlignment="Left" Margin="197,124,0,0" TextWrapping="Wrap" Text="Genres" VerticalAlignment="Top"/>
@@ -30,7 +30,7 @@
         <TextBlock x:Name="LblGenreName" HorizontalAlignment="Left" Margin="197,417,0,0" TextWrapping="Wrap" Text="Genre Name:" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtGenreName" HorizontalAlignment="Left" Height="23" Margin="197,437,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerdGenre.Name}" VerticalAlignment="Top" Width="166"/>
         <Button x:Name="BtnNewGenre" HorizontalAlignment="Left" Content="Add New Genre" Margin="197,465,0,0" VerticalAlignment="Top" Width="166"
-                Command="{Binding AddGenreCommand}"/>
+                Command="{Binding AddGenreCommand}" CommandParameter="{Binding ElementName=TxtGenreName,Path=Text}"/>
         <ListBox x:Name="LsbBands"  HorizontalAlignment="Left" Height="267" Margin="381,145,0,0" VerticalAlignment="Top" Width="395"
                  ItemsSource="{Binding Bands}" SelectedItem="{Binding GeselecteerdeBand}"/>
         <Button x:Name="BtnAdjustStage" HorizontalAlignment="Left" Content="Adjust Stage" Margin="10,490,0,0" VerticalAlignment="Top" Width="166"
@@ -41,7 +41,7 @@
         <TextBox x:Name="TxtBandFacebook" HorizontalAlignment="Left" Height="23" Margin="381,487,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerdeBand.Facebook}" VerticalAlignment="Top" Width="185"/>
         <TextBox x:Name="TxtBandTwitter" HorizontalAlignment="Left" Height="23" Margin="591,487,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerdeBand.Twitter}" VerticalAlignment="Top" Width="185"/>
         <ComboBox HorizontalAlignment="Left" Margin="591,437,0,0" VerticalAlignment="Top" Width="185"
-                  ItemsSource="{Binding Genres}" DisplayMemberPath="Name"/>
+                  ItemsSource="{Binding Genres}" DisplayMemberPath="Name" SelectedItem="{Binding GeselecteerdGenreCmb}"/>
         <TextBlock x:Name="LblBandName" HorizontalAlignment="Left" Margin="381,421,0,0" TextWrapping="Wrap" Text="Band Name:" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBandGenre" HorizontalAlignment="Left" Margin="599,421,0,0" TextWrapping="Wrap" Text="Band Genre:" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBandTwitter" HorizontalAlignment="Left" Margin="591,469,0,0" TextWrapping="Wrap" Text="Band Twitter:" VerticalAlignment="Top"/>

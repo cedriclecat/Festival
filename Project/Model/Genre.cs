@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Labo06_1.Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +15,23 @@ namespace Project.Model
 
         public static void AddGenre(Genre temp)
         {
-
+            string sql = "INSERT INTO genres (Name) VALUES(@Name)";
+            ModifyDatabase(sql, temp);
+            
         }
 
         public static void SaveGenre(Genre temp)
         {
+            string sql = "UPDATE genres SET Name=@Name where ID=@ID";
+            ModifyDatabase(sql, temp);
+        }
 
+        private static void ModifyDatabase(string sql, Genre temp)
+        {
+            DbParameter id = Database.AddParameter("@ID", temp.ID);
+            DbParameter name = Database.AddParameter("@Name", temp.Name);
+
+            Database.ModifyData(sql, id, name);
         }
     }
 }
