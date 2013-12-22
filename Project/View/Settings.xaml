@@ -61,7 +61,7 @@
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource MultiParamConverter}">
                     <Binding Path="Text" ElementName="TxtDate"/>
-                    <Binding Path="Text" ElementName="LblTickets"/>
+                    <Binding Path="Text" ElementName="TxtTickets"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>

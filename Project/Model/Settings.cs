@@ -42,7 +42,7 @@ namespace Project.Model
 
         public static void SaveSettings(Settings temp)
         {
-            string sql = "UPDATE settings SET Startdate=@Startdate,AvailableTickets=@AvailableTickets where ID=@ID";
+            string sql = "UPDATE settings SET StartDate=@StartDate,AvailableTickets=@AvailableTickets";
             ModifieDatabase(sql, temp);
         }
         public static void ModifieDatabase(string sql, Settings temp)

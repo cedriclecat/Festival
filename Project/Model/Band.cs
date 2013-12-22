@@ -32,7 +32,7 @@ namespace Project.Model
 
         public static void SaveBand(Band temp)
         {
-            string sql = "UPDATE bands T Name=@Name,Twitter=@Twitter,Facebook=@Facebook,Description=@Description,GenreID=@GenreID where ID=@ID";
+            string sql = "UPDATE bands SET Name=@Name,Twitter=@Twitter,Facebook=@Facebook,Description=@Description,GenreID=@GenreID where ID=@ID";
             ModifyDatabase(sql, temp);
         }
         private static void ModifyDatabase(string sql, Band temp)

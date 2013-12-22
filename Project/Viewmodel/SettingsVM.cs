@@ -288,6 +288,7 @@ namespace Project.Viewmodel
 
         public void ExecuteSaveBandCommand()
         {
+            GeselecteerdeBand.Genre = GeselecteerdGenreCmb;
             Band.SaveBand(GeselecteerdeBand);
             Bands = LineUp.GetBands(Genres);
         }

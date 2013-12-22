@@ -15,13 +15,14 @@ namespace Project.Model
 
         public static void SaveStage(Stage geselecteerd)
         {
-            string sql = "INSERT INTO stages (Name) VALUES (@Name)";
+            string sql = "UPDATE stages SET Name=@Name where ID=@ID";
             ModifyDatabase(sql, geselecteerd);
+            
         }
 
         public static void AddStage(Stage temp)
         {
-            string sql = "UPDATE stages SET Name=@Name where ID=@ID";
+            string sql = "INSERT INTO stages (Name) VALUES(@Name)";
             ModifyDatabase(sql, temp);
         }
 
