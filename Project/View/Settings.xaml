@@ -46,7 +46,7 @@
         <TextBlock x:Name="LblBandGenre" HorizontalAlignment="Left" Margin="599,421,0,0" TextWrapping="Wrap" Text="Band Genre:" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBandTwitter" HorizontalAlignment="Left" Margin="591,469,0,0" TextWrapping="Wrap" Text="Band Twitter:" VerticalAlignment="Top"/>
         <TextBlock x:Name="LblBandFacebook" HorizontalAlignment="Left" Margin="381,471,0,0" TextWrapping="Wrap" Text="Band Facebook:" VerticalAlignment="Top"/>
-        <Button x:Name="BtnNewBand" HorizontalAlignment="Left" Content="Add New Band" Margin="381,510,0,0" VerticalAlignment="Top" Width="185" Command="{Binding AddBandCommand}">
+        <Button x:Name="BtnNewBand" HorizontalAlignment="Left" Content="Add New Band" Margin="381,515,0,0" VerticalAlignment="Top" Width="185" Command="{Binding AddBandCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource MultiParamConverter}">
                     <Binding Path="Text" ElementName="TxtBandName"/>

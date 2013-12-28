@@ -211,5 +211,33 @@ namespace Project.Model
             return this.Date + "\t" + this.From + "\t" + this.Until + "\t" + this.Stage.Name + "\t" + this.Band.Name + "\t"+this.Band.Genre.Name;
                 
         }
+
+        public static void SaveLinups(LineUp temp)
+        {
+            string sql = "UPDATE lineup SET Date=@Date,StartTime=@StartTime,EndTime=@EndTime,BandID=@BandID,StageID=@StageID where ID=@ID";
+            ModifyDatabase(sql, temp);
+        }
+        public static void AddLinups(LineUp temp)
+        {
+            string sql = "INSERT INTO lineup (Date,StartTime,EndTime,BandID,StageID) VALUES(@Date,@StartTime,@EndTime,@BandID,@StageID)";
+            ModifyDatabase(sql, temp);
+        }
+        public static void DeleteLineup(LineUp temp)
+        {
+            string sql = "DELETE FROM lineup where ID=@ID";
+            ModifyDatabase(sql, temp);
+        }
+
+        private static void ModifyDatabase(string sql, LineUp temp)
+        {
+            DbParameter id = Database.AddParameter("@ID", temp.ID);
+            DbParameter date = Database.AddParameter("@Date", temp.Date);
+            DbParameter starttime = Database.AddParameter("@StartTime", temp.From);
+            DbParameter endtime = Database.AddParameter("@EndTime", temp.Until);
+            DbParameter bandid = Database.AddParameter("@BandID", temp.Band.ID);
+            DbParameter stageid = Database.AddParameter("@StageID", temp.Stage.ID);
+
+            Database.ModifyData(sql, id, date, starttime, endtime, bandid, stageid);
+        }
     }
 }

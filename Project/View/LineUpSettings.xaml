@@ -3,30 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:C="clr-namespace:Project.View.converters"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <C:AddContactConverter x:Key="MultiParamConverter"></C:AddContactConverter>
+    </UserControl.Resources>
     <Grid>
-        <ComboBox x:Name="LblStage" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="LblStage" HorizontalAlignment="Left" Margin="109,23,0,0" VerticalAlignment="Top" Width="200" ItemsSource="{Binding Stages}" DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedStage}"/>
         <TextBlock x:Name="LblStageselect" HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="Select stage" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LblnewStagename" HorizontalAlignment="Left" Margin="241,23,0,0" TextWrapping="Wrap" Text="Change stage name:" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="241,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
-                 Text="{Binding GeselecteerderPerformer.StageName}"/>
-        <ListBox HorizontalAlignment="Left" Height="450" Margin="10,70,0,0" VerticalAlignment="Top" Width="529" ItemsSource="{Binding LineUps}" SelectedItem="{Binding GeselecteerderPerformer}"/>
-        <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="564,365,0,0" VerticalAlignment="Top" Width="200"/>
-        <TextBlock x:Name="LblBandName" HorizontalAlignment="Left" Margin="564,123,0,0" TextWrapping="Wrap" Text="Band name:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LblGenre" HorizontalAlignment="Left" Margin="564,52,0,0" TextWrapping="Wrap" Text="Genre:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LblStartTime" HorizontalAlignment="Left" Margin="564,194,0,0" TextWrapping="Wrap" Text="StartTime:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LblEndTime" HorizontalAlignment="Left" Margin="564,264,0,0" TextWrapping="Wrap" Text="Ending Time:" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtBand" HorizontalAlignment="Left" Height="23" Margin="564,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
-                  Text="{Binding GeselecteerderPerformer.BandName}"/>
-        <TextBox x:Name="TxtStart" HorizontalAlignment="Left" Height="24" Margin="564,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
-                 Text="{Binding GeselecteerderPerformer.From}"/>
-        <TextBox x:Name="TxtGenre" HorizontalAlignment="Left" Height="23" Margin="564,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="TxtEnding" HorizontalAlignment="Left" Height="24" Margin="564,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"
-                  Text="{Binding GeselecteerderPerformer.Until}"/>
-        <Button x:Name="BtnNewband" Content="Add new band" HorizontalAlignment="Left" Margin="564,329,0,0" VerticalAlignment="Top" Width="200"/>
-        <CheckBox x:Name="CcbInsert" Content="Insert at given time" HorizontalAlignment="Left" Margin="564,403,0,0" VerticalAlignment="Top" IsChecked="True"/>
-        <CheckBox x:Name="CcbOverwrite" Content="Overwrite at given time" HorizontalAlignment="Left" Margin="564,435,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <ListBox HorizontalAlignment="Left" Height="470" Margin="10,50,0,0" VerticalAlignment="Top" Width="529" ItemsSource="{Binding LineUps}" SelectedItem="{Binding GeselecteerderPerformer}"/>
+        <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="564,478,0,0" VerticalAlignment="Top" Width="200"
+                Command="{Binding SaveCommand}"/>
+        <TextBlock x:Name="LblnewBandName" HorizontalAlignment="Left" Margin="564,208,0,0" TextWrapping="Wrap" Text="new band:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblStartTime" HorizontalAlignment="Left" Margin="564,354,0,0" TextWrapping="Wrap" Text="StartTime:" VerticalAlignment="Top" RenderTransformOrigin="0.592,3.07"/>
+        <TextBlock x:Name="LblEndTime" HorizontalAlignment="Left" Margin="564,400,0,0" TextWrapping="Wrap" Text="Ending Time:" VerticalAlignment="Top"/>
+        <Button x:Name="BtnNewband" Content="Add new band" HorizontalAlignment="Left" Margin="564,452,0,0" VerticalAlignment="Top" Width="200"
+                Command="{Binding AddCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                    <Binding Path="Text" ElementName="TxtStart"/>
+                    <Binding Path="Text" ElementName="TxtStop"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <ComboBox x:Name="CcbBands" HorizontalAlignment="Left" Margin="564,229,0,0" VerticalAlignment="Top" Width="200" ItemsSource="{Binding Bands}" DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedNewBand}"/>
+        <TextBlock x:Name="LblOldName" HorizontalAlignment="Left" Margin="564,256,0,0" TextWrapping="Wrap" Text="selected Stage:" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CcbStages" HorizontalAlignment="Left" Margin="564,327,0,0" VerticalAlignment="Top" Width="200" ItemsSource="{Binding Stages}" DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedNewStage}"/>
+        <TextBox x:Name="TxtStart" HorizontalAlignment="Left" Height="22" Margin="564,376,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerderPerformer.From}" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="TxtStop" HorizontalAlignment="Left" Height="22" Margin="564,416,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerderPerformer.Until}" VerticalAlignment="Top" Width="198"/>
+        <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" Margin="564,503,0,0" VerticalAlignment="Top" Width="200"
+                Command="{Binding DeleteCommand}"/>
+        <TextBox x:Name="TxtStart_Copy" HorizontalAlignment="Left" Height="22" Margin="564,277,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerderPerformer.Stage.Name}" VerticalAlignment="Top" Width="198"/>
+        <TextBlock x:Name="LblNewStage" HorizontalAlignment="Left" Margin="564,306,0,0" TextWrapping="Wrap" Text="new stage:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LblOldBand" HorizontalAlignment="Left" Margin="564,160,0,0" TextWrapping="Wrap" Text="selected band:" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtSelectedBand" HorizontalAlignment="Left" Height="22" Margin="564,181,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerderPerformer.Band.Name}" VerticalAlignment="Top" Width="198"/>
+        <Button x:Name="BtnStageReset" Content="Reset" HorizontalAlignment="Left" Margin="339,23,0,0" VerticalAlignment="Top" Width="200" Command="{Binding ResetCommand}"/>
 
     </Grid>
 </UserControl>
