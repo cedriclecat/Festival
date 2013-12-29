@@ -53,8 +53,8 @@
         <TextBlock x:Name="LblTicketType" HorizontalAlignment="Left" Margin="489,169,0,0" TextWrapping="Wrap" Text="TicketType." VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="TxtTicketType" HorizontalAlignment="Left" Margin="492,190,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketTypes}" DisplayMemberPath="Name"
                 SelectedItem="{Binding GeselecteerdeTicketType}" />
-        <Button x:Name="BtnReserve" Content="Reserve" HorizontalAlignment="Left" Margin="638,283,0,0" VerticalAlignment="Top" Width="120"
-        	Command="{Binding DeleteCommand}"/>
+        <Button x:Name="BtnPrint" Content="Print ticket" HorizontalAlignment="Left" Margin="489,319,0,0" VerticalAlignment="Top" Width="269"
+        	Command="{Binding PrintCommand}"/>
 
     </Grid>
 </UserControl>

@@ -1,9 +1,13 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
 using Project.Model;
 using Project.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +31,7 @@ namespace Project.Viewmodel
             CreateAddCommand();
             CreateSaveCommand();
             CreateDeleteCommand();
+            CreatePrintCommand();
         }
 
         private ObservableCollection<Ticket> _tickets;
@@ -189,5 +194,57 @@ namespace Project.Viewmodel
             Ticket.DeleteTicket(GeselecteerdTicket);
             Tickets = Ticket.GetTicketPersons();
         }
+
+
+        public ICommand PrintCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecutePrintCommand()
+        {
+            if (GeselecteerdTicket != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void CreatePrintCommand()
+        {
+            PrintCommand = new RelayCommand(ExecutePrintCommand, CanExecutePrintCommand);
+            //object[] ipv object omdat het multibinding is
+        }
+
+        public void ExecutePrintCommand()
+        {
+            PrintTicket(GeselecteerdTicket);
+        }
+
+        public void PrintTicket(Ticket printticket)
+        {
+            
+
+              string filename = "../../../printouts/"+GeselecteerdTicket.Ticketholder + ".docx";
+              File.Copy("template.docx", filename, true);
+              WordprocessingDocument newdow = WordprocessingDocument.Open(filename, true);
+              Dictionary<string, BookmarkStart> bookmarks = new Dictionary<string, BookmarkStart>();
+              foreach (BookmarkStart bms in newdow.MainDocumentPart.RootElement.Descendants<BookmarkStart>())
+              {
+                  bookmarks[bms.Name] = bms;
+              }
+              int totalprice = GeselecteerdTicket.Amount * GeselecteerdTicket.TicketType.Price;
+              //bookmarks["Name"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(GeselecteerdTicket.Ticketholder)), bookmarks["Naam"]);
+              bookmarks["Name"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(GeselecteerdTicket.Ticketholder)), bookmarks["Name"]);
+              bookmarks["Email"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(GeselecteerdTicket.TicketHolderEmail)), bookmarks["Email"]);
+              bookmarks["TicketType"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(GeselecteerdTicket.TicketType.Name)), bookmarks["TicketType"]);
+              bookmarks["Amount"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(GeselecteerdTicket.Amount.ToString())), bookmarks["Amount"]);
+              bookmarks["Price"].Parent.InsertAfter<DocumentFormat.OpenXml.Wordprocessing.Run>(new DocumentFormat.OpenXml.Wordprocessing.Run(new DocumentFormat.OpenXml.Wordprocessing.Text(totalprice.ToString())), bookmarks["Price"]);
+
+              newdow.Close();
+            }
+        
     }
 }
