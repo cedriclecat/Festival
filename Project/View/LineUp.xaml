@@ -40,7 +40,42 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
-        <ListBox HorizontalAlignment="Left" Height="420" Margin="13,90,0,0" VerticalAlignment="Top" Width="750" ItemsSource="{Binding LineUps}"/>
+        <ListView HorizontalAlignment="Left" Height="420" Margin="13,90,0,0" VerticalAlignment="Top" Width="750" ItemsSource="{Binding LineUps}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Stage Name"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Stage.Name}" />
+                        <!--<GridViewColumn Header="Date"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Date}" />-->
+                        <GridViewColumn Header="Start Time"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=From}" />
+                        <GridViewColumn Header="Stop Time"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Until}" />
+
+                        <GridViewColumn Header="Band Name"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Band.Name}" />
+                        <GridViewColumn Header="Band Genre"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Band.Genre.Name}" />
+                        <GridViewColumn Header="Band Twitter adress"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding Path=Band.Twitter}" />
+                        <GridViewColumn Header="Band Facebook address"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding Path=Band.Facebook}" />
+                        <GridViewColumn Header="Band Facebook Description"
+                                            Width="300"
+                                            DisplayMemberBinding="{Binding Path=Band.Description}" />
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </UserControl>

@@ -32,6 +32,7 @@ namespace Project.Viewmodel
             CreateSaveCommand();
             CreateDeleteCommand();
             CreatePrintCommand();
+            CreateSearchCommand();
         }
 
         private ObservableCollection<Ticket> _tickets;
@@ -115,13 +116,12 @@ namespace Project.Viewmodel
         public void ExecuteSaveCommand()
         {
             //hier komt de method
-            if (GeselecteerdeTicketType == null)
-            {
-                MessageBox.Show("Please select a TicketType");
-            }
-            else
+            if (GeselecteerdeTicketType != null)
             {
                 GeselecteerdTicket.TicketType = GeselecteerdeTicketType;
+            }
+            else
+            {                
                 Ticket.SaveTicket(GeselecteerdTicket);
                 Tickets = Ticket.GetTicketPersons();
             }
@@ -245,6 +245,40 @@ namespace Project.Viewmodel
 
               newdow.Close();
             }
+
+        public ICommand SearchCommand
+        {
+            get;
+            internal set;
+        }
+        public bool CanExecuteSearchCommand(object param)
+        {
+            return true;
+        }
+        private void CreateSearchCommand()
+        {
+            SearchCommand = new RelayCommand<object>(ExecuteSearchCommand, CanExecuteSearchCommand);
+            //object[] ipv object omdat het multibinding is
+        }
+
+        public void ExecuteSearchCommand(object param)
+        {
+            ObservableCollection<Ticket> Tickets = Ticket.GetTicketPersons();
+            ObservableCollection<Ticket> temp = new ObservableCollection<Ticket>();
+            string search = param.ToString();
+            foreach(Ticket singleticket in Tickets)
+            {
+                string[] names = singleticket.Ticketholder.Split(' ');
+                if (search == names[0] || search == names[1] || search == singleticket.TicketHolderEmail)
+                {
+                    temp.Add(singleticket);
+                }
+            }
+
+            _tickets.Clear();
+            _tickets = temp;
+            Tickets = temp;
+        }
         
     }
 }

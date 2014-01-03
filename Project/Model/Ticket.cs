@@ -3,6 +3,8 @@ using Project.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,9 @@ namespace Project.Model
     class Ticket : ObservableObject
     {
         public String ID { get; set; }
+
+        [Required(ErrorMessage = "De naam is verplicht")]
+       // [StringLength(50, MinimumLength = 2, ErrorMessage = "min 2 karakter, max 50 karakters")]
         private String _ticketholder;
         public String Ticketholder 
         {
@@ -24,7 +29,7 @@ namespace Project.Model
             set
             {
                 _ticketholder = value;
-                OnPropertyChanged("Ticketholder");
+                //OnPropertyChanged("Ticketholder");
             }
         
         }
@@ -38,7 +43,7 @@ namespace Project.Model
             set
             {
                 _ticketholderemail = value;
-                OnPropertyChanged("TicketHolderEmail");
+                // OnPropertyChanged("TicketHolderEmail");
             }
         }
         private TicketType _ticketType;
@@ -51,7 +56,7 @@ namespace Project.Model
             set
             {
                 _ticketType = value;
-                OnPropertyChanged("TicketType");
+                //OnPropertyChanged("TicketType");
             }
         }
         private int _amount;
@@ -64,7 +69,7 @@ namespace Project.Model
             set
             {
                 _amount = value;
-                OnPropertyChanged("Amount");
+                //OnPropertyChanged("Amount");
             }
         }
         private bool _day1;
