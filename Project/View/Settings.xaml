@@ -31,8 +31,30 @@
         <TextBox x:Name="TxtGenreName" HorizontalAlignment="Left" Height="23" Margin="197,437,0,0" TextWrapping="Wrap" Text="{Binding GeselecteerdGenre.Name}" VerticalAlignment="Top" Width="166"/>
         <Button x:Name="BtnNewGenre" HorizontalAlignment="Left" Content="Add New Genre" Margin="197,465,0,0" VerticalAlignment="Top" Width="166"
                 Command="{Binding AddGenreCommand}" CommandParameter="{Binding ElementName=TxtGenreName,Path=Text}"/>
-        <ListBox x:Name="LsbBands"  HorizontalAlignment="Left" Height="267" Margin="381,145,0,0" VerticalAlignment="Top" Width="395"
-                 ItemsSource="{Binding Bands}" SelectedItem="{Binding GeselecteerdeBand}"/>
+        <ListView x:Name="LsbBands"  HorizontalAlignment="Left" Height="267" Margin="381,145,0,0" VerticalAlignment="Top" Width="395"
+                 ItemsSource="{Binding Bands}" SelectedItem="{Binding GeselecteerdeBand}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Band Name"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Name}" />
+                        <GridViewColumn Header="Band Genre"
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding Path=Genre.Name}" />
+                        <GridViewColumn Header="Band Twitter adress"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding Path=Twitter}" />
+                        <GridViewColumn Header="Band Facebook address"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding Path=Facebook}" />
+                        <GridViewColumn Header="Band Facebook Description"
+                                            Width="300"
+                                            DisplayMemberBinding="{Binding Path=Description}" />
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button x:Name="BtnAdjustStage" HorizontalAlignment="Left" Content="Adjust Stage" Margin="10,490,0,0" VerticalAlignment="Top" Width="166"
                 Command="{Binding SaveStageCommand}"/>
         <Button x:Name="BtnAdjustGenre" HorizontalAlignment="Left" Content="Adjust Genre" Margin="197,490,0,0" VerticalAlignment="Top" Width="166"
