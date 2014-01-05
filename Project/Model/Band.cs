@@ -26,13 +26,13 @@ namespace Project.Model
 
         public static void AddBand(Band temp)
         {
-            string sql = "INSERT INTO bands (Name,Twitter,Facebook,Description,GenreID) VALUES(@Name,@Twitter,@Facebook,@Description,@GenreID)";
+            string sql = "INSERT INTO bands (Name,Twitter,Facebook,Description,GenreID,Picture) VALUES(@Name,@Twitter,@Facebook,@Description,@GenreID,@Picture)";
             ModifyDatabase(sql, temp);
         }
 
         public static void SaveBand(Band temp)
         {
-            string sql = "UPDATE bands SET Name=@Name,Twitter=@Twitter,Facebook=@Facebook,Description=@Description,GenreID=@GenreID where ID=@ID";
+            string sql = "UPDATE bands SET Name=@Name,Twitter=@Twitter,Facebook=@Facebook,Description=@Description,GenreID=@GenreID,Picture=@Picture where ID=@ID";
             ModifyDatabase(sql, temp);
         }
         private static void ModifyDatabase(string sql, Band temp)
@@ -43,8 +43,8 @@ namespace Project.Model
             DbParameter facebook = Database.AddParameter("@Facebook", temp.Facebook);
             DbParameter description = Database.AddParameter("@Description", temp.Description);
             DbParameter genreID = Database.AddParameter("@GenreID", temp.Genre.ID);
-
-            Database.ModifyData(sql, id, name, twitter, facebook, description, genreID);
+            DbParameter Picture = Database.AddParameter("@Picture", temp.Picture);
+            Database.ModifyData(sql, id, name, twitter, facebook, description, genreID, Picture);
         }
     }
 }

@@ -10,8 +10,6 @@
         <C:AddContactConverter x:Key="MultiParamConverter"></C:AddContactConverter>
     </UserControl.Resources>
     <Grid Height="530" VerticalAlignment="Top">
-        <TextBlock x:Name="LblContacts" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="Contacts" VerticalAlignment="Top" Height="50" Width="200"/>
-        <TextBlock x:Name="LblTime" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Height="50" Width="200"/>
         <ListView HorizontalAlignment="Left" Height="486" Margin="10,30,0,0" VerticalAlignment="Top" Width="550" ItemsSource="{Binding Contacts}" SelectedItem="{Binding GeselecteerdContact}">
             <ListView.View>
                 <GridView>

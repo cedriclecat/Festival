@@ -23,6 +23,7 @@ namespace Project.Viewmodel
             CreateAddCommand();
             CreateDeleteCommand();
             _contacts = Contactperson.GetContactPersons();
+
         }
 
         //variabele om de listbox contacts aan te binden.
@@ -60,6 +61,8 @@ namespace Project.Viewmodel
         }
 
         //
+
+       
 
         public ICommand SaveCommand
         {

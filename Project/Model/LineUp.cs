@@ -104,7 +104,7 @@ namespace Project.Model
                 LineUp newLineUp = new LineUp();
                 newLineUp.ID = reader["ID"].ToString();   
                 String date = reader["Date"].ToString();
-                //newLineUp.Date = DateTime.ParseExact(date,"dd/MM/yyyy HH:mm:tt",null);
+               
                 newLineUp.Date = DateTime.Parse(date);
                 newLineUp.From = reader["StartTime"].ToString();
                 newLineUp.Until = reader["EndTime"].ToString();
@@ -119,24 +119,7 @@ namespace Project.Model
                
             }
 
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load("lineup.xml");
-            ////doc.Load("C:/Users/Lecat/Dropbox/nmct personal/prgramming/Project/Project/bin/Debug/lineup.xml");
-            //XmlNodeList lokalelijst = doc.GetElementsByTagName("lineup");
-            //for (int i = 1; i < lokalelijst.Count; ++i)
-            //{
-            //    LineUp linup = new LineUp();
-            //    linup.ID = lokalelijst[i].Attributes["id"].InnerText;
-            //    linup.From = lokalelijst[i].Attributes["starttime"].InnerText;
-            //    linup.Until = lokalelijst[i].Attributes["endtime"].InnerText;
-            //    linup.BandName = lokalelijst[i].Attributes["band"].InnerText;
-            //    linup.StageName = lokalelijst[i].Attributes["stage"].InnerText;
-            //    String date;
-            //    date = lokalelijst[i].Attributes["date"].InnerText;
-
-            //    //date.Split(".");
-            //    lijst.Add(linup);
-            //}
+           
             return lijst;
         }
         public static ObservableCollection<Band> GetBands(ObservableCollection<Genre> tempGenres)
@@ -167,7 +150,7 @@ namespace Project.Model
                     tempBand.Description = reader["Description"].ToString();
                 }
                 else tempBand.Description = "No Description given";
-
+                tempBand.Picture = reader["Picture"].ToString();
                 int genreID = int.Parse(reader["GenreID"].ToString());                
                 tempBand.Genre = tempGenres[genreID-1];
 
@@ -185,6 +168,7 @@ namespace Project.Model
                 Genre tempGenre = new Genre();
                 tempGenre.ID = int.Parse(reader["ID"].ToString());
                 tempGenre.Name = reader["Name"].ToString();
+                tempGenre.Picture = reader["Picture"].ToString();
                 lijst.Add(tempGenre);
             }
 
@@ -202,6 +186,7 @@ namespace Project.Model
                 Stage tempstage = new Stage();
                 tempstage.ID = reader["ID"].ToString();
                 tempstage.Name = reader["Name"].ToString();
+                tempstage.Picture = reader["Picture"].ToString();
                 stages.Add(tempstage);
             }
             return stages;

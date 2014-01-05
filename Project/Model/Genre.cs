@@ -12,17 +12,17 @@ namespace Project.Model
     {
         public int ID { get; set; }
         public String Name { get; set; }
-
+        public String Picture { get; set; }
         public static void AddGenre(Genre temp)
         {
-            string sql = "INSERT INTO genres (Name) VALUES(@Name)";
+            string sql = "INSERT INTO genres (Name,Pictures) VALUES(@Name,@Pictures)";
             ModifyDatabase(sql, temp);
             
         }
 
         public static void SaveGenre(Genre temp)
         {
-            string sql = "UPDATE genres SET Name=@Name where ID=@ID";
+            string sql = "UPDATE genres SET Name=@Name,Picture=@Picture where ID=@ID";
             ModifyDatabase(sql, temp);
         }
 
@@ -30,8 +30,8 @@ namespace Project.Model
         {
             DbParameter id = Database.AddParameter("@ID", temp.ID);
             DbParameter name = Database.AddParameter("@Name", temp.Name);
-
-            Database.ModifyData(sql, id, name);
+            DbParameter picture = Database.AddParameter("@Picture", temp.Picture);
+            Database.ModifyData(sql, id, name,picture);
         }
     }
 }

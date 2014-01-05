@@ -188,20 +188,20 @@ namespace Project.Viewmodel
             get;
             internal set;
         }
-        public bool CanExecuteAddStageCommand(object param)
+        public bool CanExecuteAddStageCommand(object[] param)
         {
             return true;
         }
         private void CreateAddStageCommand()
         {
-            AddStageCommand = new RelayCommand<object>(ExecuteAddStageCommand, CanExecuteAddStageCommand);
+            AddStageCommand = new RelayCommand<object[]>(ExecuteAddStageCommand, CanExecuteAddStageCommand);
         }
 
-        public void ExecuteAddStageCommand(object param)
+        public void ExecuteAddStageCommand(object[] param)
         {
             Stage temp = new Stage();
-            temp.Name = param.ToString() ;
-
+            temp.Name = param[0].ToString() ;
+            temp.Picture = param[1].ToString();
             Stage.AddStage(temp);
             Stages = LineUp.GetStage();
         }
@@ -214,21 +214,21 @@ namespace Project.Viewmodel
             get;
             internal set;
         }
-        public bool CanExecuteAddGenreCommand(object param)
+        public bool CanExecuteAddGenreCommand(object[] param)
         {
 
             return true;
         }
         private void CreateAddGenreCommand()
         {
-            AddGenreCommand = new RelayCommand<object>(ExecuteAddGenreCommand, CanExecuteAddGenreCommand);
+            AddGenreCommand = new RelayCommand<object[]>(ExecuteAddGenreCommand, CanExecuteAddGenreCommand);
         }
 
-        public void ExecuteAddGenreCommand(object param)
+        public void ExecuteAddGenreCommand(object[] param)
         {
             Genre temp = new Genre();
-            temp.Name = param.ToString();
-
+            temp.Name = param[0].ToString();
+            temp.Picture = param[1].ToString();
             Genre.AddGenre(temp);
             Genres = LineUp.GetGenres();
         }
@@ -288,7 +288,11 @@ namespace Project.Viewmodel
 
         public void ExecuteSaveBandCommand()
         {
-            GeselecteerdeBand.Genre = GeselecteerdGenreCmb;
+            if (GeselecteerdGenreCmb != null)
+            {
+                GeselecteerdeBand.Genre = GeselecteerdGenreCmb;
+            }          
+
             Band.SaveBand(GeselecteerdeBand);
             Bands = LineUp.GetBands(Genres);
         }
@@ -315,6 +319,7 @@ namespace Project.Viewmodel
             temp.Name = param[0].ToString();
             temp.Facebook = param[1].ToString();
             temp.Twitter = param[2].ToString();
+            temp.Picture = param[3].ToString();
             temp.Description = " ";
             temp.Genre = GeselecteerdGenreCmb;
             Band.AddBand(temp);
